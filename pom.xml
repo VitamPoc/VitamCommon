@@ -104,6 +104,18 @@
   	<system>jenkins</system>
   	<url>https://192.168.56.103/jenkins/</url>
   </ciManagement>
+  <distributionManagement>
+    <repository>
+        <id>depl</id>
+        <name>Internal Releases</name>
+        <url>http://127.0.0.1/nexus/content/repositories/releases/</url>
+    </repository>
+    <snapshotRepository>
+        <id>depl</id>
+        <name>Internal Releases</name>
+        <url>http://127.0.0.1/nexus/content/repositories/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
   <properties>
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
