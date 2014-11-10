@@ -55,11 +55,11 @@ public final class JsonHandler {
     /**
      * Default JsonFactory
      */
-    private final static JsonFactory JSONFACTORY = new JsonFactory();
+    private static final JsonFactory JSONFACTORY = new JsonFactory();
     /**
      * Default ObjectMapper
      */
-    private final static ObjectMapper OBJECT_MAPPER;
+    private static final ObjectMapper OBJECT_MAPPER;
 
     static {
         OBJECT_MAPPER = new ObjectMapper(JSONFACTORY);

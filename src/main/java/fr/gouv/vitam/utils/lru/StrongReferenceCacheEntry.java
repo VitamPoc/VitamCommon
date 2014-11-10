@@ -38,9 +38,9 @@ class StrongReferenceCacheEntry<V> implements InterfaceLruCacheEntry<V> {
      *             if ttl is not positive
      */
     StrongReferenceCacheEntry(V value, long ttl) {
-        if (ttl <= 0)
+        if (ttl <= 0) {
             throw new IllegalArgumentException("ttl must be positive");
-
+        }
         this.value = value;
         expirationTime = System.currentTimeMillis() + ttl;
     }
@@ -53,10 +53,11 @@ class StrongReferenceCacheEntry<V> implements InterfaceLruCacheEntry<V> {
      * @return value if entry is valid
      */
     public V getValue() {
-        if (System.currentTimeMillis() > expirationTime)
+        if (System.currentTimeMillis() > expirationTime) {
             return null;
-        else
+        } else {
             return value;
+        }
     }
 
     public boolean isStillValid(long timeRef) {

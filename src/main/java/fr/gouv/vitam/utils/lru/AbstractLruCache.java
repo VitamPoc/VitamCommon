@@ -40,8 +40,9 @@ public abstract class AbstractLruCache<K, V> implements InterfaceLruCache<K, V> 
      *             if ttl is not positive
      */
     protected AbstractLruCache(long ttl) {
-        if (ttl <= 0)
+        if (ttl <= 0) {
             throw new IllegalArgumentException("ttl must be positive");
+        }
 
         this.ttl = ttl;
     }
@@ -92,8 +93,9 @@ public abstract class AbstractLruCache<K, V> implements InterfaceLruCache<K, V> 
 
     
     public void setNewTtl(long ttl) {
-        if (ttl <= 0)
+        if (ttl <= 0) {
             throw new IllegalArgumentException("ttl must be positive");
+        }
         this.ttl = ttl;
     }
 
@@ -103,7 +105,7 @@ public abstract class AbstractLruCache<K, V> implements InterfaceLruCache<K, V> 
      * @param key
      * @return LruCacheEntry<V>
      */
-    abstract protected InterfaceLruCacheEntry<V> getEntry(K key);
+    protected abstract InterfaceLruCacheEntry<V> getEntry(K key);
 
     public void updateTtl(K key) {
         InterfaceLruCacheEntry<V> cacheEntry = getEntry(key);
@@ -145,8 +147,9 @@ public abstract class AbstractLruCache<K, V> implements InterfaceLruCache<K, V> 
     }
 
     public void put(K key, V value, long ttl) {
-        if (value != null)
+        if (value != null) {
             putEntry(key, createEntry(value, ttl));
+        }
     }
 
     /**
@@ -155,5 +158,5 @@ public abstract class AbstractLruCache<K, V> implements InterfaceLruCache<K, V> 
      * @param key
      * @param entry
      */
-    abstract protected void putEntry(K key, InterfaceLruCacheEntry<V> entry);
+    protected abstract void putEntry(K key, InterfaceLruCacheEntry<V> entry);
 }

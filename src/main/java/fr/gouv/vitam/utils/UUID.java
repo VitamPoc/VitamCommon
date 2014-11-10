@@ -115,7 +115,6 @@ public final class UUID {
         uuid[0] = (byte) (((count & 0x0F) << 4) | ((count & 0xF0) >> 4));
         uuid[1] = (byte) (((count & 0xF00) >> 4) | ((count & 0xF000) >> 12));
         uuid[2] = (byte) (((count & 0xF0000) >> 12) | ((count & 0xF00000) >> 20));
-        // uuid[3] = (byte) (((count & 0xF000000) >> 20) | ((count & 0xF0000000) >> 28));
 
         // copy pid to uuid
         uuid[3] = (byte) (JVMPID >> 8);
@@ -193,8 +192,9 @@ public final class UUID {
      * @throws InvalidUuidOperationException
      */
     public UUID(final byte[] bytes) throws InvalidUuidOperationException {
-        if (bytes.length != KEYSIZE && bytes.length != UTILUUIDKEYSIZE)
+        if (bytes.length != KEYSIZE && bytes.length != UTILUUIDKEYSIZE) {
             throw new InvalidUuidOperationException("Attempted to parse malformed UUID: (" + bytes.length + ") " + Arrays.toString(bytes));
+        }
         uuid = Arrays.copyOf(bytes, KEYSIZE);
         if (bytes.length == UTILUUIDKEYSIZE) {
             uuid[5] = (byte) VERSION_DEC;
@@ -651,9 +651,9 @@ public final class UUID {
         return machineId;
     }
 
+    private static final byte[] NOT_FOUND = { -1 };
     private static final byte[] defaultMachineId() {
         // Find the best MAC address available.
-        final byte[] NOT_FOUND = { -1 };
         byte[] bestMacAddr = NOT_FOUND;
         InetAddress bestInetAddr = null;
         try {

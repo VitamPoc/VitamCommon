@@ -44,11 +44,11 @@ public final class XmlHandler {
     /**
      * Default JacksonXmlModule
      */
-    private final static JacksonXmlModule XMLMODULE = new JacksonXmlModule();
+    private static final JacksonXmlModule XMLMODULE = new JacksonXmlModule();
     /**
      * Default XmlMapper
      */
-    private final static XmlMapper XML_MAPPER;
+    private static final XmlMapper XML_MAPPER;
 
     static {
         XMLMODULE.setDefaultUseWrapper(false);
@@ -114,11 +114,9 @@ public final class XmlHandler {
     }
 
 
-    /**
+    /*
      * @param unformattedXml
      * @return the formatted xml
-     */
-    /*
          Keep if needed later on: depend on xerces 2.4.0
     public static String format(String unformattedXml) {
         try {

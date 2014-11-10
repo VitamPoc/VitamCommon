@@ -62,7 +62,7 @@ public final class SystemPropertyUtil {
         }
         if (!contains(FILE_ENCODING) || !get(FILE_ENCODING).equalsIgnoreCase(UTF_8)) {
             try {
-                // logger.info("Try to set UTF-8 as default file encoding: use -Dfile.encoding=UTF-8 as java command argument to ensure correctness");
+                // Try to set UTF-8 as default file encoding: use -Dfile.encoding=UTF-8 as java command argument to ensure correctness
                 System.setProperty(FILE_ENCODING, UTF_8);
                 final Field charset = Charset.class.getDeclaredField("defaultCharset");
                 charset.setAccessible(true);
@@ -95,7 +95,7 @@ public final class SystemPropertyUtil {
      * @param key
      * @return True if the key is contained
      */
-    public final static boolean contains(final String key) {
+    public static final boolean contains(final String key) {
         if (key == null) {
             throw new NullPointerException("key");
         }
@@ -109,7 +109,7 @@ public final class SystemPropertyUtil {
      * @param key
      * @return the property value or {@code null}
      */
-    public final static String get(final String key) {
+    public static final String get(final String key) {
         return get(key, null);
     }
 
@@ -123,7 +123,7 @@ public final class SystemPropertyUtil {
      * @return the property value. {@code def} if there's no such property or if an access to the
      *         specified property is not allowed.
      */
-    public final static String get(final String key, final String def) {
+    public static final String get(final String key, final String def) {
         if (key == null) {
             throw new NullPointerException("key");
         }

@@ -49,8 +49,9 @@ class CapacityLruLinkedHashMap<K, V> extends LinkedHashMap<K, V> {
             float loadFactor) {
         super(initialCapacity, loadFactor, true);
 
-        if (capacity <= 0)
+        if (capacity <= 0) {
             throw new IllegalArgumentException("capacity must be positive");
+        }
 
         this.capacity = capacity;
     }

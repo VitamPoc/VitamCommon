@@ -89,12 +89,12 @@ public class SynchronizedLruCache<K, V> extends AbstractLruCache<K, V> {
         this(capacity, ttl, DEFAULT_INITIAL_CAPACITY, DEFAULT_LOAD_FACTOR);
     }
 
-    synchronized public void clear() {
+    public synchronized void clear() {
         cacheMap.clear();
     }
 
     @Override
-    synchronized public V get(K key) {
+    public synchronized V get(K key) {
         return super.get(key);
     }
 
@@ -107,11 +107,11 @@ public class SynchronizedLruCache<K, V> extends AbstractLruCache<K, V> {
         return cacheMap.get(key);
     }
 
-    synchronized public int size() {
+    public synchronized int size() {
         return cacheMap.size();
     }
 
-    synchronized public void put(K key, V value, long ttl) {
+    public synchronized void put(K key, V value, long ttl) {
         super.put(key, value, ttl);
     }
 
@@ -120,7 +120,7 @@ public class SynchronizedLruCache<K, V> extends AbstractLruCache<K, V> {
         cacheMap.put(key, entry);
     }
 
-    synchronized public V remove(K key) {
+    public synchronized V remove(K key) {
         InterfaceLruCacheEntry<V> cv = cacheMap.remove(key);
         if (cv != null) {
             return cv.getValue();
@@ -128,7 +128,7 @@ public class SynchronizedLruCache<K, V> extends AbstractLruCache<K, V> {
         return null;
     }
 
-    synchronized public int forceClearOldest() {
+    public synchronized int forceClearOldest() {
         long timeRef = System.currentTimeMillis();
         Collection<InterfaceLruCacheEntry<V>> collection = cacheMap.values();
         Iterator<InterfaceLruCacheEntry<V>> iterator = collection.iterator();

@@ -35,7 +35,7 @@ import fr.gouv.vitam.utils.logging.VitamLoggerFactory;
  *
  */
 public class FileUtil {
-    private static VitamLogger LOGGER = VitamLoggerFactory.getInstance(FileUtil.class);
+    private static final VitamLogger LOGGER = VitamLoggerFactory.getInstance(FileUtil.class);
     /**
      * UTF-8 string
      */
@@ -72,5 +72,9 @@ public class FileUtil {
         }
 
         return builder.toString();
+    }
+
+    private FileUtil() {
+        // Unused
     }
 }
